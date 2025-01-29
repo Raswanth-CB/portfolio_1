@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raswanth CB - Portfolio</title>
+    <title>Raswanth CB - Data Scientist</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #ff4d5a;
-            --secondary: #2a2a72;
-            --gradient: linear-gradient(45deg, #ff4d5a, #2a2a72);
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #45B7D1;
+            --gradient: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
         }
 
         * {
@@ -21,7 +22,7 @@
         }
 
         body {
-            background: var(--gradient);
+            background: #1a1a1a;
             color: white;
             overflow-x: hidden;
         }
@@ -36,7 +37,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 4rem 2rem;
         }
 
         /* Navigation */
@@ -48,6 +49,8 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
         }
 
         .nav-links {
@@ -84,18 +87,74 @@
             display: flex;
             align-items: center;
             position: relative;
+            padding-top: 80px;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, white, #ffd6d9);
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Timeline Sections */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         /* Projects Section */
@@ -107,23 +166,42 @@
         }
 
         .project-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             border-radius: 15px;
             padding: 1.5rem;
             transition: 0.3s;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.1;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            background: rgba(255,255,255,0.2);
         }
 
         /* Contact Section */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
         }
 
         .form-group {
@@ -138,42 +216,42 @@
             border: none;
             border-radius: 8px;
             color: white;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: 2px solid var(--primary);
         }
 
         button {
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
             padding: 1rem 2rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
+            font-weight: 600;
         }
 
         button:hover {
             transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
         }
 
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
 
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
 
-        .social-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Animations */
-        [data-aos] {
-            transition: 0.8s;
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -184,6 +262,9 @@
         <h1>RASWANTH CB</h1>
         <div class="nav-links">
             <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
@@ -191,41 +272,93 @@
 
     <section class="hero container" id="home">
         <div class="hero-content">
-            <h1 data-aos="fade-up">Full Stack Developer &<br>Creative Designer</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Turning ideas into interactive experiences</p>
+            <h1 data-aos="fade-up">Data Scientist &<br>AI Developer</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Transforming data into intelligent solutions</p>
             <div class="social-links" data-aos="fade-up" data-aos-delay="400">
                 <a href="https://github.com/raswanth12" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/raswanth-cb-0250451b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:ras@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="about">
+        <div class="about-grid">
+            <div data-aos="fade-right">
+                <h2>About Me</h2>
+                <p>Data science student passionate about artificial intelligence, deep learning, and neural networks. Skilled at using data-driven solutions to enhance decision-making, optimize processes, and extract valuable insights.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Neural Networks</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="education">
+        <h2 data-aos="fade-up">Education</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-date">2022-2024</div>
+                <h3>Christ University</h3>
+                <p>Master of Science: Data Science</p>
+                <p>Lavasa, Pune, India</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-date">2019-2022</div>
+                <h3>Sri Krishna Adithya Arts And Science College</h3>
+                <p>Bachelor of Science: Information Technology</p>
+                <p>Coimbatore, Tamil Nadu, India</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="experience">
+        <h2 data-aos="fade-up">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-date">Jan 2024 - Present</div>
+                <h3>Tata Institute of Social Sciences</h3>
+                <p>AI developer in geospatial - Internship</p>
+                <p>Hyderabad, Telangana, India · Hybrid</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-date">Jul 2023 - Aug 2023</div>
+                <h3>KG Information Systems Private Limited</h3>
+                <p>AI-developer intern</p>
+                <p>Coimbatore, Tamil Nadu, India · On-site</p>
             </div>
         </div>
     </section>
 
     <section class="container" id="projects">
-        <h2 data-aos="fade-up">Featured Projects</h2>
+        <h2 data-aos="fade-up">Projects</h2>
         <div class="projects-grid">
-            <!-- Add your projects here -->
             <div class="project-card" data-aos="zoom-in">
-                <h3>E-commerce Platform</h3>
-                <p>Full-stack shopping platform with React & Node.js</p>
+                <h3>Geospatial AI Analysis</h3>
+                <p>Developed machine learning models for spatial data analysis</p>
             </div>
             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-                <h3>AI Chat Application</h3>
-                <p>Real-time messaging app with machine learning features</p>
+                <h3>Predictive Maintenance System</h3>
+                <p>Created neural network models for equipment failure prediction</p>
             </div>
         </div>
     </section>
 
     <section class="container" id="contact">
-        <h2 data-aos="fade-up">Get in Touch</h2>
+        <h2 data-aos="fade-up">Contact Me</h2>
         <form class="contact-form" data-aos="fade-up">
             <div class="form-group">
-                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Name" required>
             </div>
             <div class="form-group">
-                <input type="email" placeholder="Email">
+                <input type="email" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <textarea placeholder="Message" rows="5"></textarea>
+                <textarea placeholder="Message" rows="5" required></textarea>
             </div>
             <button type="submit">Send Message</button>
         </form>
@@ -234,11 +367,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
 
         // Floating Background Animation
         const canvas = document.querySelector('.floating-bg');
@@ -246,40 +375,32 @@
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        // Add floating shapes
-        const geometry = new THREE.IcosahedronGeometry(1, 0);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0xffffff,
-            transparent: true,
-            opacity: 0.1
-        });
+        // Add floating particles
+        const particles = new THREE.BufferGeometry();
+        const particleCount = 1000;
+        const posArray = new Float32Array(particleCount * 3);
 
-        const shapes = [];
-        for (let i = 0; i < 20; i++) {
-            const shape = new THREE.Mesh(geometry, material);
-            shape.position.set(
-                Math.random() * 20 - 10,
-                Math.random() * 20 - 10,
-                Math.random() * 20 - 10
-            );
-            shapes.push(shape);
-            scene.add(shape);
+        for(let i = 0; i < particleCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 5;
         }
 
-        camera.position.z = 15;
+        particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const material = new THREE.PointsMaterial({
+            size: 0.005,
+            color: new THREE.Color(var(--primary))
+        });
 
-        // Animation loop
+        const particleMesh = new THREE.Points(particles, material);
+        scene.add(particleMesh);
+
+        camera.position.z = 3;
+
         function animate() {
             requestAnimationFrame(animate);
-            shapes.forEach((shape, index) => {
-                shape.rotation.x += 0.01;
-                shape.rotation.y += 0.01;
-                shape.position.y += Math.sin(Date.now() * 0.001 + index) * 0.001;
-            });
+            particleMesh.rotation.y += 0.001;
             renderer.render(scene, camera);
         }
 
-        // Handle window resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
@@ -288,9 +409,9 @@
 
         animate();
 
-        // Smooth scroll for navigation
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
@@ -298,10 +419,10 @@
             });
         });
 
-        // Form submission
+        // Form handling
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add your form submission logic here
+            // Add form submission logic here
             alert('Thank you for your message! I will respond shortly.');
         });
     </script>

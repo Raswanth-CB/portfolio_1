@@ -1,0 +1,65 @@
+// Variables
+$primary-color: #2a2a72;
+$secondary-color: #009ffd;
+$text-color: #ffffff;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Base Styles
+body {
+    background: linear-gradient(45deg, $primary-color, $secondary-color);
+    color: $text-color;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.threejs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+// Navigation Styles
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 1.5rem;
+    z-index: 1000;
+    @include flex-center;
+    justify-content: space-between;
+}
+
+// Hero Section
+.hero {
+    height: 100vh;
+    @include flex-center;
+    position: relative;
+}
+
+.animated-title {
+    font-size: 4rem;
+    span {
+        color: $secondary-color;
+    }
+}
+
+// Interactive Elements
+.project-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+
+    &:hover {
+        transform: translateY(-10px) rotateX(5deg);
+    }
+}
